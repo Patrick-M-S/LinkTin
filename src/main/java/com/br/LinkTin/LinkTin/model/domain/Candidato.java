@@ -1,5 +1,6 @@
 package com.br.LinkTin.LinkTin.model.domain;
 
+import java.util.Date;
 import java.util.Objects;
 import jakarta.persistence.*;
 
@@ -12,6 +13,14 @@ public class Candidato {
     private Long id;
     private String nome;
     private String email;
+    private String telefone;
+    private String cpf;
+    private Date dataNascimento;
+    private char genero;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "candidato_dados_id")
+    private CandidatoDados candidatoDados;
+
 
     public Long getId() {
         return id;
@@ -36,7 +45,45 @@ public class Candidato {
     public void setEmail(String email) {
         this.email = email;
     }
+    public String getTelefone() {
+        return telefone;
+    }
 
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public char getGenero() {
+        return genero;
+    }
+
+    public void setGenero(char genero) {
+        this.genero = genero;
+    }
+
+    public CandidatoDados getCandidatoDados() {
+        return candidatoDados;
+    }
+
+    public void setCandidatoDados(CandidatoDados candidatoDados) {
+        this.candidatoDados = candidatoDados;
+    }
     @Override
     public String toString() {
         return "Candidato{" +
@@ -57,4 +104,5 @@ public class Candidato {
     public int hashCode() {
         return Objects.hash(getId(), getNome(), getEmail());
     }
+
 }
