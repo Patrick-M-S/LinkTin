@@ -17,10 +17,6 @@ public class Candidato {
     private String cpf;
     private Date dataNascimento;
     private char genero;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "candidato_dados_id")
-    private CandidatoDados candidatoDados;
-
 
     public Long getId() {
         return id;
@@ -77,13 +73,6 @@ public class Candidato {
         this.genero = genero;
     }
 
-    public CandidatoDados getCandidatoDados() {
-        return candidatoDados;
-    }
-
-    public void setCandidatoDados(CandidatoDados candidatoDados) {
-        this.candidatoDados = candidatoDados;
-    }
     @Override
     public String toString() {
         return "Candidato{" +
