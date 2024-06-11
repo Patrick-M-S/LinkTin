@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_candidato")
-public class Candidato {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -85,8 +85,8 @@ public class Candidato {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Candidato candidato)) return false;
-        return Objects.equals(getId(), candidato.getId()) && Objects.equals(getNome(), candidato.getNome()) && Objects.equals(getEmail(), candidato.getEmail());
+        if (!(o instanceof User user)) return false;
+        return Objects.equals(getId(), user.getId()) && Objects.equals(getNome(), user.getNome()) && Objects.equals(getEmail(), user.getEmail());
     }
 
     @Override

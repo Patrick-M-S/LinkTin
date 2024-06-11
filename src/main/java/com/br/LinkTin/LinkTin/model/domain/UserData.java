@@ -6,7 +6,7 @@ import java.sql.Clob;
 
 @Entity
 @Table(name = "tb_candidatodados")
-public class CandidatoDados {
+public class UserData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class CandidatoDados {
 
     @OneToOne
     @JoinColumn(name = "candidato_dados_id")
-    private Candidato candidato;
+    private User user;
 
     public Long getId() {
         return id;
@@ -65,16 +65,16 @@ public class CandidatoDados {
     public void setEspecificacoesTrabalho(String especificacoesTrabalho) {
         this.especificacoesTrabalho = especificacoesTrabalho;
     }
-    public Candidato getCandidato() {
-        return candidato;
+    public User getUser() {
+        return user;
     }
 
-    public void setCandidato(Candidato candidato) {
-        this.candidato = candidato;
+    public void setUser(User user) {
+        this.user = user;
     }
     @Override
     public String toString() {
-        return "CandidatoDados{" +
+        return "UserData{" +
                 "id=" + id +
                 ", habilidades='" + habilidades + '\'' +
                 ", temEmprego=" + temEmprego +
