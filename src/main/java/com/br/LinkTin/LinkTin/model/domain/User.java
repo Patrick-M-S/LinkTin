@@ -5,18 +5,19 @@ import java.util.Objects;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "tb_candidato")
+@Table(name = "userMain")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nome;
+    private String name;
     private String email;
-    private String telefone;
+    private String password;
     private String cpf;
-    private Date dataNascimento;
-    private char genero;
+    private String address;
+    private Date birthDate;
+    private char gender;
 
     public Long getId() {
         return id;
@@ -26,12 +27,12 @@ public class User {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -41,12 +42,13 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getTelefone() {
-        return telefone;
+
+    public String getPassword() {
+        return password;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getCpf() {
@@ -57,27 +59,35 @@ public class User {
         this.cpf = cpf;
     }
 
-    public Date getDataNascimento() {
-        return dataNascimento;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public char getGenero() {
-        return genero;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setGenero(char genero) {
-        this.genero = genero;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public char getGender() {
+        return gender;
+    }
+
+    public void setGender(char gender) {
+        this.gender = gender;
     }
 
     @Override
     public String toString() {
-        return "Candidato{" +
+        return "User{" +
                 "id=" + id +
-                ", nome='" + nome + '\'' +
+                ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
@@ -86,12 +96,13 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User user)) return false;
-        return Objects.equals(getId(), user.getId()) && Objects.equals(getNome(), user.getNome()) && Objects.equals(getEmail(), user.getEmail());
+        return Objects.equals(getId(), user.getId()) &&
+                Objects.equals(getName(), user.getName()) &&
+                Objects.equals(getEmail(), user.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNome(), getEmail());
+        return Objects.hash(getId(), getName(), getEmail());
     }
-
 }
