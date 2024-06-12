@@ -31,7 +31,14 @@ public class UserController {
     public Optional<User> getCandidatoById(@PathVariable Long id) {
         return userService.findById(id);
     }
-    
+
+    @GetMapping("/withUserInfo")
+    @Operation(summary = "Lista todos os usuários candidatos com suas repectivas Users Infos", description = "Retorna uma lista de todos os usuários com o adicional de User Info")
+    public ResponseEntity<List<UserWithUserInfoDTO>> getAllUsersWithUserInfo() {
+        List<UserWithUserInfoDTO> users = userService.getAllUsersWithUserInfo();
+        return ResponseEntity.ok(users);
+    }
+
     @PostMapping
     @Operation(summary = "Cria um novo usuário candidato", description = "Adiciona um novo usuário ao sistema.")
     public User createCandidato(@RequestBody User user) {
@@ -51,10 +58,4 @@ public class UserController {
         userService.deleteById(id);
     }
 
-    @GetMapping("/withUserInfo")
-    @Operation(summary = "Lista todos os usuários candidatos com suas repectivas Users Infos", description = "Retorna uma lista de todos os usuários com o adicional de User Info")
-    public ResponseEntity<List<UserWithUserInfoDTO>> getAllUsersWithUserInfo() {
-        List<UserWithUserInfoDTO> users = userService.getAllUsersWithUserInfo();
-        return ResponseEntity.ok(users);
-    }
 }

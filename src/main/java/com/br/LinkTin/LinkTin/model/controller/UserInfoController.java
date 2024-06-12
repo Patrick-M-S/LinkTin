@@ -23,14 +23,6 @@ public class UserInfoController {
         this.userInfoService = userInfoService;
     }
 
-    @PostMapping
-    @Operation(summary = "Cadastra informações profissionais do usuário candidato especificado"
-            , description = "Cadastra informações profissionais do usuário candidato especificado")
-    public ResponseEntity<UserInfo> createUser(@RequestParam Long userId, @RequestBody UserInfo userInfo) {
-        UserInfo createdUserInfo = userInfoService.createUserInfo(userId, userInfo);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdUserInfo);
-    }
-
     @GetMapping("/{id}")
     @Operation(summary = "Retorna informações profissionais do usuário candidato especificado"
             , description = "Retorna informações profissionais do usuário candidato especificado")
@@ -41,6 +33,14 @@ public class UserInfoController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping
+    @Operation(summary = "Cadastra informações profissionais do usuário candidato especificado"
+            , description = "Cadastra informações profissionais do usuário candidato especificado")
+    public ResponseEntity<UserInfo> createUser(@RequestParam Long userId, @RequestBody UserInfo userInfo) {
+        UserInfo createdUserInfo = userInfoService.createUserInfo(userId, userInfo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUserInfo);
     }
 
     @PutMapping("/{id}")
