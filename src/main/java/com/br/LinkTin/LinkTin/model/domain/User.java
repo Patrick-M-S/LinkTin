@@ -18,6 +18,7 @@ public class User {
     private String address;
     private Date birthDate;
     private char gender;
+    private String picture;
 
     public Long getId() {
         return id;
@@ -104,5 +105,13 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName(), getEmail());
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 }
