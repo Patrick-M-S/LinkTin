@@ -53,4 +53,7 @@ public class UserInfoService {
         // Salvar e retornar a UserInfo atualizada
         return userInfoRepository.save(existingUserInfo);
     }
+    public void deleteById(Long id) {
+        userRepository.deleteById(id);
+    }
 }

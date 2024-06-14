@@ -54,6 +54,11 @@ public class UserInfoController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deleta os dados profissionais do usuário candidato relacionado ao ID informado"
+            , description = "Deleta os dados profissionais do usuário candidato relacionado ao ID informado")
+    public void deleteUserInfo(@PathVariable Long id) {
+        userInfoService.deleteById(id);
+    }
 }
 

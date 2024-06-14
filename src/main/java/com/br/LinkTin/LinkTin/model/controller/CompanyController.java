@@ -1,5 +1,6 @@
 package com.br.LinkTin.LinkTin.model.controller;
 
+import com.br.LinkTin.LinkTin.model.domain.CompanyDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,13 @@ public class CompanyController {
     @Operation(summary = "Lista todas empresas", description = "Retorna uma lista de todas empresas.")
     public List<Company> getAllCompanyes() {
         return companyService.findAll();
+    }
+
+    @GetMapping("/withJobOpportunitys")
+    @Operation(summary = "Lista todas empresas com suas respectivas vagas"
+            , description = "Lista todas empresas com suas respectivas vagas")
+    public List<CompanyDTO> getAllCompanyDTO() {
+        return companyService.findAllCompaniesWithJobs();
     }
     
     @GetMapping("/{id}")

@@ -1,15 +1,6 @@
 package com.br.LinkTin.LinkTin.model.domain;
 
-import java.util.Date;
-import java.util.Objects;
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "jobOpportunity")
-public class JobOpportunity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class JobOpportunityDTO {
     private Long id;
     private String jobTitle;
     private String workMode;
@@ -17,9 +8,16 @@ public class JobOpportunity {
     private Double salary;
     private String level;
     private String description;
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    private Company company;
+
+    public JobOpportunityDTO(Long id, String jobTitle, String workMode, String location, Double salary, String level, String description) {
+        this.id = id;
+        this.jobTitle = jobTitle;
+        this.workMode = workMode;
+        this.location = location;
+        this.salary = salary;
+        this.level = level;
+        this.description = description;
+    }
 
     public Long getId() {
         return id;
@@ -77,11 +75,7 @@ public class JobOpportunity {
         this.description = description;
     }
 
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
+    // getters and setters
 }
+
+

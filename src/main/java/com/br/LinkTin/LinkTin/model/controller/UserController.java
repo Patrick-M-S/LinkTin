@@ -22,13 +22,13 @@ public class UserController {
     
     @GetMapping
     @Operation(summary = "Lista todos os usuários candidatos", description = "Retorna uma lista de todos os usuários.")
-    public List<User> getAllCandidatos() {
+    public List<User> getAllUsers() {
         return userService.findAll();
     }
     
     @GetMapping("/{id}")
     @Operation(summary = "Retorna o usuário candidato relacionado ao ID informado", description = "Retorna um usuário candidato especfico.")
-    public Optional<User> getCandidatoById(@PathVariable Long id) {
+    public Optional<User> getUserById(@PathVariable Long id) {
         return userService.findById(id);
     }
 
@@ -41,20 +41,20 @@ public class UserController {
 
     @PostMapping
     @Operation(summary = "Cria um novo usuário candidato", description = "Adiciona um novo usuário ao sistema.")
-    public User createCandidato(@RequestBody User user) {
+    public User createUser(@RequestBody User user) {
         return userService.save(user);
     }
     
     @PutMapping("/{id}")
     @Operation(summary = "Atualiza o usuário candidato relacionado ao ID informado", description = "Atualiza um usuário candidato especfico.")
-    public User updateCandidato(@PathVariable Long id, @RequestBody User user) {
+    public User updateUser(@PathVariable Long id, @RequestBody User user) {
         user.setId(id);
         return userService.save(user);
     }
     
     @DeleteMapping("/{id}")
     @Operation(summary = "Deleta o usuário candidato relacionado ao ID informado", description = "Deleta um usuário candidato especfico.")
-    public void deleteCandidato(@PathVariable Long id) {
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
     }
 

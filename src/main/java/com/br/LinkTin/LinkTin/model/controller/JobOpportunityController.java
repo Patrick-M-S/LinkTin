@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/jobopportunitys")
@@ -24,15 +26,28 @@ public class JobOpportunityController {
         this.jobOpportunityService = jobOpportunityService;
     }
 
-    @GetMapping("/{id}")
-    @Operation(summary = "Retorna vagas da empresa  especificado"
-            , description = "Retorna vagas da empresa  especificado")
-    public ResponseEntity<List<UserInfo> getUserInfoById(@PathVariable Long id) {
-        UserInfo userInfo = userInfoService.getUserInfoById(id);
-        if (userInfo != null) {
-            return ResponseEntity.ok(userInfo);
+    @PostMapping
+    @Operation(summary = "Cadastra informações da vaga para uma empresa especificada"
+            , description = "Cadastra informações da vaga para uma empresa especificada")
+    public ResponseEntity<JobOpportunity> createJobOpportunity(@RequestParam Long companyId, @RequestBody JobOpportunity jobOpportunity) {
+        JobOpportunity createdJobOpportunity = jobOpportunityService.createJobOpportunity(companyId, jobOpportunity);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdJobOpportunity);
+    }
+    @PutMapping("/{id}")
+    @Operation(summary = "Atualiza informações da vaga do usuário candidato especificado"
+            , description = "Atualiza informações profissionais do usuário candidato especificado")
+    public ResponseEntity<JobOpportunity> updateUserInfo(@PathVariable Long id, @RequestBody JobOpportunity jobOpportunity) {
+        JobOpportunity updatedJobOpportunity = jobOpportunityService.save(jobOpportunity);
+        if (updatedJobOpportunity != null) {
+            return ResponseEntity.ok(updatedJobOpportunity);
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Deleta a vaga da empresa relacionado ao ID informado"
+            , description = "Deleta os dados profissionais do usuário candidato relacionado ao ID informado")
+    public void deleteJobOpportunity(@PathVariable Long id) {
+        jobOpportunityService.deleteById(id);
     }
 }
