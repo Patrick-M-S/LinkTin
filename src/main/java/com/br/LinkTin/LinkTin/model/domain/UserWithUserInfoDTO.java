@@ -15,8 +15,18 @@ public class UserWithUserInfoDTO {
     private String skills;
     private String curriculum;
     private String level;
+    private String picture;
 
-    public UserWithUserInfoDTO(Long userId, String name, String email, String password, String cpf, String address, Timestamp birthDate, char gender, Long userInfoId, String skills, String curriculum, String level) {
+    // Getters e setters
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public UserWithUserInfoDTO(Long userId, String name, String email, String password, String cpf, String address, Timestamp birthDate, char gender, Long userInfoId, String skills, String curriculum, String level, String picture) {
         this.userId = userId;
         this.name = name;
         this.email = email;
@@ -29,6 +39,7 @@ public class UserWithUserInfoDTO {
         this.skills = skills;
         this.curriculum = curriculum;
         this.level = level;
+        this.picture = picture;
     }
 
     public Long getUserId() {

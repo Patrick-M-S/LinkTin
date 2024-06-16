@@ -6,20 +6,20 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "jobOpportunity")
-public class JobOpportunity {
+    public class JobOpportunity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String jobTitle;
-    private String workMode;
-    private String location;
-    private Double salary;
-    private String level;
-    private String description;
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    private Company company;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+        private String jobTitle;
+        private String workMode;
+        private String location;
+        private Double salary;
+        private String level;
+        private String description;
+        @ManyToOne
+        @JoinColumn(name = "company_id")
+        private Company company;
 
     public Long getId() {
         return id;

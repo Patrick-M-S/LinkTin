@@ -18,6 +18,8 @@ public class User {
     private String address;
     private Date birthDate;
     private char gender;
+    @Lob  // Usar Lob para indicar um tipo de dados grande
+    @Column(name = "picture", length = Integer.MAX_VALUE)  // Ou especificar um tamanho grande
     private String picture;
 
     public Long getId() {

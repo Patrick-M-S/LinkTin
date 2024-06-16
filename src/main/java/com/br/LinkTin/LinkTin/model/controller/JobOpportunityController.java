@@ -1,5 +1,6 @@
 package com.br.LinkTin.LinkTin.model.controller;
 
+import com.br.LinkTin.LinkTin.model.domain.Company;
 import com.br.LinkTin.LinkTin.model.domain.JobOpportunity;
 import com.br.LinkTin.LinkTin.model.domain.UserInfo;
 import com.br.LinkTin.LinkTin.model.service.JobOpportunityService;
@@ -26,6 +27,12 @@ public class JobOpportunityController {
         this.jobOpportunityService = jobOpportunityService;
     }
 
+    @GetMapping
+    @Operation(summary = "Lista todas as vagas", description = "Retorna uma lista de todas as vagas cadastradas.")
+    public List<JobOpportunity> getAllJobOpportunitys() {
+        return jobOpportunityService.findAll();
+    }
+
     @PostMapping
     @Operation(summary = "Cadastra informações da vaga para uma empresa especificada"
             , description = "Cadastra informações da vaga para uma empresa especificada")
@@ -34,10 +41,9 @@ public class JobOpportunityController {
         return ResponseEntity.status(HttpStatus.CREATED).body(createdJobOpportunity);
     }
     @PutMapping("/{id}")
-    @Operation(summary = "Atualiza informações da vaga do usuário candidato especificado"
-            , description = "Atualiza informações profissionais do usuário candidato especificado")
-    public ResponseEntity<JobOpportunity> updateUserInfo(@PathVariable Long id, @RequestBody JobOpportunity jobOpportunity) {
-        JobOpportunity updatedJobOpportunity = jobOpportunityService.save(jobOpportunity);
+    @Operation(summary = "Atualiza informações da vaga especificada", description = "Atualiza informações da vaga especificada")
+    public ResponseEntity<JobOpportunity> updateJobOpportunity(@PathVariable Long id, @RequestBody JobOpportunity jobOpportunity) {
+        JobOpportunity updatedJobOpportunity = jobOpportunityService.updateJobOpportunity(id, jobOpportunity);
         if (updatedJobOpportunity != null) {
             return ResponseEntity.ok(updatedJobOpportunity);
         } else {

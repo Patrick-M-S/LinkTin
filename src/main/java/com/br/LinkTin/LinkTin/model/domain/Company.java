@@ -17,6 +17,8 @@ public class Company {
     private String cnpj;
     private String address;
     private String token;
+    @Lob  // Usar Lob para indicar um tipo de dados grande
+    @Column(name = "picture", length = Integer.MAX_VALUE)  // Ou especificar um tamanho grande
     private String picture;
 
     public Long getId() {

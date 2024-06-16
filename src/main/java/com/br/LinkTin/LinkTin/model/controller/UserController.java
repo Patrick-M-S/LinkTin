@@ -1,12 +1,17 @@
 package com.br.LinkTin.LinkTin.model.controller;
 
 import com.br.LinkTin.LinkTin.model.domain.UserWithUserInfoDTO;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.br.LinkTin.LinkTin.model.domain.User;
 import com.br.LinkTin.LinkTin.model.service.UserService;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -41,8 +46,19 @@ public class UserController {
 
     @PostMapping
     @Operation(summary = "Cria um novo usuário candidato", description = "Adiciona um novo usuário ao sistema.")
-    public User createUser(@RequestBody User user) {
-        return userService.save(user);
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        try {
+            User savedUser = userService.save(user);
+            return ResponseEntity.ok(savedUser);
+        } catch (ConstraintViolationException e) {
+            Map<String, String> errors = new HashMap<>();
+            e.getConstraintViolations().forEach(cv -> {
+                errors.put(cv.getPropertyPath().toString(), cv.getMessage());
+            });
+            return ResponseEntity.badRequest().body(errors);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
     
     @PutMapping("/{id}")
